@@ -43,8 +43,9 @@ class SQLiteClient:
         """
         Check if a table exists in the database
         """
-        query = f"SELECT * FROM sqlite_master WHERE type='table' AND name='{table_name}';"
-        result = self.execute_query(query)
+        query = "SELECT * FROM sqlite_master WHERE type='table' AND name=?;"
+        values = (table_name)
+        result = self.execute_query(query, values)
 
         return len(result) > 0
     
@@ -52,8 +53,9 @@ class SQLiteClient:
         """
         Check if a bundle exists in the database
         """
-        query = f"SELECT * FROM bundle_meta WHERE machine_name='{bundle_name}';"
-        result = self.execute_query(query)
+        query = "SELECT * FROM bundle_meta WHERE machine_name=?;"
+        values = (bundle_name)
+        result = self.execute_query(query, values)
 
         return len(result) > 0
     
